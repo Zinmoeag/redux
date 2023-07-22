@@ -1,4 +1,4 @@
-const {createStore} = require("redux");
+const {createStore, combineReducers} = require("redux");
 
 const action = () => {
 	return {		
@@ -8,18 +8,29 @@ const action = () => {
 
 }
 
-const initialStore = {
-	cake : 10,
-	cream : 5,
+const cakeStore = {
+	cake : 10
 }
 
 
-const reducer = (store = initialStore , action) => {
+const creamStore = {
+	cream : 20
+}
+
+const cakeReducer = (store = cakeStore , action) => {
 	switch(action.type){
 		case "buyCake" : return {
 			...store,
 			cake : store.cake - 1
 		}
+
+		default : return store
+	}
+}
+
+
+const creamReducer = (store = creamStore , action) => {
+	switch(action.type){
 		case "getCream" : return {
 			...store,
 			cream : store.cream - 1,
@@ -29,7 +40,14 @@ const reducer = (store = initialStore , action) => {
 	}
 }
 
-const store = createStore(reducer);
+
+const rootReducer = combineReducers({
+	cake:cakeReducer,
+	cream:creamReducer
+
+})
+const store = createStore(rootReducer);
+
 
 console.log(store.getState());
 
