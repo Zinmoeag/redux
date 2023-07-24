@@ -5,13 +5,11 @@ const action = () => {
 		type : "buyCake",
 		info : 'I m buying cake',
 	}
-
 }
 
 const cakeStore = {
 	cake : 10
 }
-
 
 const creamStore = {
 	cream : 20
@@ -52,11 +50,8 @@ const store = createStore(rootReducer);
 console.log(store.getState());
 
 store.subscribe(() => console.log("changed", store.getState()));
-store.dispatch(action());
-store.dispatch(action());
-store.dispatch(action());
-store.dispatch(action());
-store.dispatch(action());
+store.dispatch(action())
+store.dispatch(action())
 
 store.dispatch(
 	{
